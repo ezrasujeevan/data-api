@@ -19,7 +19,7 @@ model Shopper {
 
 model Product {
   id        String                @id @default(uuid())
-  catogory  String
+  category  String
   brand     String
   createdAt DateTime              @default(now())
   updatedAt DateTime              @updatedAt

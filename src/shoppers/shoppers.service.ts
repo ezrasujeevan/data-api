@@ -1,26 +1,23 @@
 import { Injectable } from '@nestjs/common';
-import { CreateShopperDto } from './dto/create-shopper.dto';
-import { UpdateShopperDto } from './dto/update-shopper.dto';
+import { PrismaService } from '../prisma/prisma.service';
+import { CreateShopperDto } from './dto/shopper.dto';
 
 @Injectable()
 export class ShoppersService {
-  create(createShopperDto: CreateShopperDto) {
-    return 'This action adds a new shopper';
+  constructor(private prisma: PrismaService) {}
+  async create(createShopperDto: CreateShopperDto) {
+    return this.prisma.shopper.create({ data: createShopperDto });
   }
 
-  findAll() {
-    return `This action returns all shoppers`;
+  async findAll() {
+    return this.prisma.shopper.findMany();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} shopper`;
+  async findOne(id: string) {
+    return this.prisma.shopper.findFirst({ where: { id } });
   }
 
-  update(id: number, updateShopperDto: UpdateShopperDto) {
-    return `This action updates a #${id} shopper`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} shopper`;
+  remove(id: string) {
+    return this.prisma.shopper.delete({ where: { id } });
   }
 }
