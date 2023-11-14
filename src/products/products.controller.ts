@@ -1,12 +1,4 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Patch,
-  Post,
-} from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/product.dto';
 import { ApiTags } from '@nestjs/swagger';
@@ -16,23 +8,19 @@ import { ApiTags } from '@nestjs/swagger';
 export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
-  @Post()
-  create(@Body() createProductDto: CreateProductDto) {
+  @Post() create(@Body() createProductDto: CreateProductDto) {
     return this.productsService.create(createProductDto);
   }
 
-  @Get()
-  findAll() {
+  @Get() findAll() {
     return this.productsService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
+  @Get(':id') findOne(@Param('id') id: string) {
     return this.productsService.findOne(id);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
+  @Delete(':id') remove(@Param('id') id: string) {
     return this.productsService.remove(id);
   }
 }
