@@ -1,13 +1,17 @@
 // prisma/seed.ts
 
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from '@prisma/client';
 
 // initialize Prisma Client
 const prisma = new PrismaClient();
 
 async function main() {
   // create two dummy articles
-  const post1 = await prisma.product.upsert({ create: undefined, update: undefined, where: undefined });
+  const post1 = await prisma.product.upsert({
+    create: undefined,
+    update: undefined,
+    where: undefined,
+  });
 
   console.log({ post1 });
 }
